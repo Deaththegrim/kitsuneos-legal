@@ -1,0 +1,7 @@
+title: KitsuneOS Legal
+description: Privacy Policy and Terms of Service for the KitsuneOS Discord game.
+# No theme gem: _layouts/default.html is self-contained, so the Pages build cannot
+# fail on a missing or renamed remote theme.
+plugins: []
+exclude:
+  - README.md
