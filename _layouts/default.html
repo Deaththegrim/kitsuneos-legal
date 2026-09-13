@@ -6,6 +6,10 @@
 <title>{{ page.title }} · KitsuneOS</title>
 <style>
   :root {
+    /* Tells the browser to draw its own chrome (scrollbars, selection, form
+       controls) dark when the dark palette below is active — without it the
+       scrollbar stays light over the near-black background. */
+    color-scheme: light dark;
     --bg: #fbfaf8; --fg: #23201d; --muted: #6b635b;
     --rule: #e2dcd4; --link: #8a2f2f; --card: #f4f1ec;
   }
@@ -19,6 +23,9 @@
   body {
     margin: 0; background: var(--bg); color: var(--fg);
     font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    /* A legal page grows contact links, invite URLs and raw IDs over time; without
+       this, one long unbroken token scrolls the whole page sideways on a phone. */
+    overflow-wrap: break-word;
   }
   .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
   header.site { border-bottom: 1px solid var(--rule); margin-bottom: 2.5rem; padding-bottom: 1.25rem; }
@@ -27,9 +34,14 @@
   header.site a.home:hover { color: var(--link); }
   h1 { font-size: 1.95rem; line-height: 1.2; margin: .6rem 0 .35rem; letter-spacing: -.01em; }
   h2 { font-size: 1.18rem; margin: 2.4rem 0 .6rem; letter-spacing: -.005em; }
-  h3 { font-size: 1rem; margin: 1.6rem 0 .4rem; }
+  /* Distinct from a bolded run of body text, which it otherwise matched exactly. */
+  h3 { font-size: .82rem; margin: 1.8rem 0 .5rem; text-transform: uppercase;
+    letter-spacing: .1em; color: var(--muted); }
   .updated { color: var(--muted); font-size: .88rem; margin: 0 0 2rem; }
   a { color: var(--link); }
+  a:focus-visible, header.site a.home:focus-visible {
+    outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px;
+  }
   ul { padding-left: 1.25rem; }
   li { margin: .3rem 0; }
   code { background: var(--card); padding: .12em .38em; border-radius: 4px;
